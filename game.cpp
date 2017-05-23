@@ -34,7 +34,12 @@ Game::Game(QWidget *parent)
     playerGameOver = new Score();
     playerGameOver->setPos(playerScore->x()+150, playerScore->y()+250);
 
-    moveLeftButton = new QPushButton("GAUCHE", this);
+    moveLeftButton = new Button();
+    moveLeftButton->setRect(0,450,400,150);
+    moveLeftButton->setPen(QPen(Qt::red,2));
+    moveRightButton = new Button();
+    moveRightButton->setRect(400,450,400,150);
+    moveRightButton->setPen(QPen(Qt::blue,2));
 
     enemy1 = new EnemyType1();
     enemy2 = new EnemyType2();
@@ -47,6 +52,7 @@ Game::Game(QWidget *parent)
     scene->addItem(playerScore);
     scene->addItem(playerLife);
     scene->addItem(moveLeftButton);
+    scene->addItem(moveRightButton);
 
     view = new QGraphicsView(scene);
     view->show();
@@ -75,6 +81,9 @@ Game::Game(QWidget *parent)
     connect(lifeBonusSpawnTimer, &QTimer::timeout, this, &Game::funcLifeBonusSpawn);
     connect(tripleBulletBonusSpawnTimer, &QTimer::timeout, this , &Game::funcTripleBulletBonusSpawn);
     connect(specialBulletBonusSpawnTimer, &QTimer::timeout, this, &Game::funcSpecialBulletBonusSpawn);
+
+    connect(moveLeftButton, &Button::clicked, this, &Game::moveToTheLeft);
+    connect(moveRightButton, &Button::clicked, this, &Game::funcMoveRight);
 
 
 //    backgroundMusic= new QMediaPlayer();
@@ -109,6 +118,14 @@ int Game::getEnemyType2B2()
 void Game::loopBackgroundMusic()
 {
     backgroundMusic->play();
+}
+
+void Game::moveToTheLeft()
+{
+    QTimer *moveToTheLeftTimer = new QTimer(this);
+    moveToTheLeftTimer->start(20);
+
+    connect(moveToTheLeftTimer, &QTimer::timeout, this, &Game::funcMoveLeft);
 }
 
 
@@ -237,6 +254,18 @@ void Game::funcSpecialBulletBonusSpawn()
         specialBulletBonusSpawnTimer->start(random_number);
     }
 
+}
+
+void Game::funcMoveLeft()
+{
+    if (game->playerShip->x() >= 0)
+    game->playerShip->setPos(playerShip->x()-15, playerShip->y());
+}
+
+void Game::funcMoveRight()
+{
+    if (game->playerShip->x() <= 700)
+    game->playerShip->setPos(playerShip->x()+15, playerShip->y());
 }
 
 void Game::funcEnemySpawn()

@@ -34,7 +34,8 @@ SOURCES += main.cpp\
     bosstype1.cpp \
     enemytype2.cpp \
     enemytype1.cpp \
-    enemytype3.cpp
+    enemytype3.cpp \
+    button.cpp
 
 HEADERS  += \
     bullet.h \
@@ -46,7 +47,8 @@ HEADERS  += \
     bosstype1.h \
     enemytype2.h \
     enemytype1.h \
-    enemytype3.h
+    enemytype3.h \
+    button.h
 
 RESOURCES += \
     res.qrc

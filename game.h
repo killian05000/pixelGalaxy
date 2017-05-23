@@ -8,6 +8,7 @@
 #include "bosstype1.h"
 #include "enemytype2.h"
 #include "bonus.h"
+#include "button.h"
 
 #include <QApplication>
 #include <QMainWindow>
@@ -17,7 +18,7 @@
 #include <QTimer>
 #include <QMediaPlayer>
 #include <random>
-#include <QPushButton>
+#include <QGraphicsRectItem>
 
 using namespace std;
 
@@ -41,6 +42,9 @@ class Game : public QGraphicsView
         void funcLifeBonusSpawn();
         void funcTripleBulletBonusSpawn();
         void funcSpecialBulletBonusSpawn();
+
+        void funcMoveLeft();
+        void funcMoveRight();
 
     public:
 
@@ -78,7 +82,10 @@ class Game : public QGraphicsView
 
         void loopBackgroundMusic();
 
-        QPushButton *moveLeftButton;
+        Button *moveLeftButton;
+        Button *moveRightButton;
+
+        void moveToTheLeft();
 };
 
 #endif // GAME_H

@@ -160,7 +160,7 @@ void Score::calculLevelReached()
         level3Activated=true;
     }
 
-    if ((getScore() == 0) && (bossType1Activated==false))
+    if ((getScore() == 100) && (bossType1Activated==false))
     {
         qDebug() << "BOSS INCOMING !!!!!!!!!!!!!!!!";
         game->funcBossType1Spawn();
