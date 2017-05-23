@@ -1,0 +1,23 @@
+<RCC>
+    <qresource prefix="/sounds"/>
+    <qresource prefix="/pictures">
+        <file>Images/background1.jpg</file>
+        <file>Images/background2.jpg</file>
+        <file>Images/lifeBonus.png</file>
+        <file>Images/playerShip1.png</file>
+        <file>Images/meteorite3.png</file>
+        <file>Images/meteorite2.png</file>
+        <file>Images/meteorite1.png</file>
+        <file>Images/enemyShip1.png</file>
+        <file>Images/bossType1.png</file>
+        <file>Images/tbBonus.png</file>
+        <file>Images/redLazerBullet.png</file>
+        <file>Images/meteorite4.png</file>
+        <file>Images/greenLazerBullet.png</file>
+        <file>Images/bluLazerBullet.png</file>
+        <file>Images/enemyShip2.png</file>
+        <file>Images/purpleLazerBullet.png</file>
+        <file>Images/sbBonus.png</file>
+        <file>Images/bossLifeBonus.png</file>
+    </qresource>
+</RCC>
