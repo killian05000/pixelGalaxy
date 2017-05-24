@@ -40,6 +40,9 @@ Game::Game(QWidget *parent)
     moveRightButton = new Button();
     moveRightButton->setRect(400,450,400,150);
     moveRightButton->setPen(QPen(Qt::blue,2));
+    shotButton = new Button();
+    shotButton->setRect(0,0,800,450);
+    shotButton->setPen(QPen(Qt::green,2));
 
     enemy1 = new EnemyType1();
     enemy2 = new EnemyType2();
@@ -53,6 +56,7 @@ Game::Game(QWidget *parent)
     scene->addItem(playerLife);
     scene->addItem(moveLeftButton);
     scene->addItem(moveRightButton);
+    scene->addItem(shotButton);
 
     view = new QGraphicsView(scene);
     view->show();
@@ -72,6 +76,9 @@ Game::Game(QWidget *parent)
     enemyType3SpawnTimerR = new QTimer(this);
     meteoriteSpawnTimer = new QTimer(this);
 
+    moveToTheLeftTimer = new QTimer(this);
+    moveToTheRightTimer = new QTimer(this);
+
     connect(enemyType1SpawnTimer, &QTimer::timeout, this, &Game::funcEnemySpawn);
     connect(enemyType2SpawnTimer, &QTimer::timeout, this, &Game::funcEnemyType2Spawn);
     connect(enemyType3SpawnTimerL, &QTimer::timeout, this, &Game::funcEnemyType3SpawnL);
@@ -83,7 +90,8 @@ Game::Game(QWidget *parent)
     connect(specialBulletBonusSpawnTimer, &QTimer::timeout, this, &Game::funcSpecialBulletBonusSpawn);
 
     connect(moveLeftButton, &Button::clicked, this, &Game::moveToTheLeft);
-    connect(moveRightButton, &Button::clicked, this, &Game::funcMoveRight);
+    connect(moveRightButton, &Button::clicked, this, &Game::moveToTheRight);
+    connect(shotButton, &Button::clicked, this, &Game::shotABullet);
 
 
 //    backgroundMusic= new QMediaPlayer();
@@ -122,10 +130,93 @@ void Game::loopBackgroundMusic()
 
 void Game::moveToTheLeft()
 {
-    QTimer *moveToTheLeftTimer = new QTimer(this);
-    moveToTheLeftTimer->start(20);
+    if (game->playerScore->getScore()==0)
+        game->playerScore->calculLevelReached();
 
-    connect(moveToTheLeftTimer, &QTimer::timeout, this, &Game::funcMoveLeft);
+    if (game->playerShip->gameReset==true)
+    {
+        game->playerShip->gameReset=false;
+        game->playerScore->calculLevelReached();
+        qDebug() << "On relance le jeu et les timers";
+    }
+
+    if (moveToTheRightTimer->isActive())
+    {
+        moveToTheRightTimer->stop();
+        disconnect(moveToTheRightTimer, &QTimer::timeout, this, &Game::funcMoveRight);
+    }
+
+    if(!moveToTheLeftTimer->isActive())
+    {
+        moveToTheLeftTimer->start(7);
+        connect(moveToTheLeftTimer, &QTimer::timeout, this, &Game::funcMoveLeft);
+    }
+
+    if(game->playerShip->getIsRunning()==false)
+    {
+        moveToTheLeftTimer->stop();
+        disconnect(moveToTheLeftTimer, &QTimer::timeout, this, &Game::funcMoveRight);
+    }
+}
+
+void Game::moveToTheRight()
+{
+    if (game->playerScore->getScore()==0)
+        game->playerScore->calculLevelReached();
+
+    if (game->playerShip->gameReset==true)
+    {
+        game->playerShip->gameReset=false;
+        game->playerScore->calculLevelReached();
+        qDebug() << "On relance le jeu et les timers";
+    }
+
+    if (moveToTheLeftTimer->isActive())
+    {
+        moveToTheLeftTimer->stop();
+        disconnect(moveToTheLeftTimer, &QTimer::timeout, this, &Game::funcMoveLeft);
+    }
+
+    if(!moveToTheRightTimer->isActive())
+    {
+        moveToTheRightTimer->start(7);
+        connect(moveToTheRightTimer, &QTimer::timeout, this, &Game::funcMoveRight);
+    }
+
+    if(game->playerShip->getIsRunning()==false)
+    {
+        moveToTheRightTimer->stop();
+        disconnect(moveToTheRightTimer, &QTimer::timeout, this, &Game::funcMoveRight);
+    }
+}
+
+void Game::shotABullet()
+{
+    if (moveToTheLeftTimer->isActive())
+    {
+        moveToTheLeftTimer->stop();
+        disconnect(moveToTheLeftTimer, &QTimer::timeout, this, &Game::funcMoveLeft);
+    }
+    if (moveToTheRightTimer->isActive())
+    {
+        moveToTheRightTimer->stop();
+        disconnect(moveToTheRightTimer, &QTimer::timeout, this, &Game::funcMoveRight);
+    }
+    game->playerShip->shotSomeBullets();
+}
+
+void Game::stopAnyMove()
+{
+    if (moveToTheLeftTimer->isActive())
+    {
+        moveToTheLeftTimer->stop();
+        disconnect(moveToTheLeftTimer, &QTimer::timeout, this, &Game::funcMoveLeft);
+    }
+    if (moveToTheRightTimer->isActive())
+    {
+        moveToTheRightTimer->stop();
+        disconnect(moveToTheRightTimer, &QTimer::timeout, this, &Game::funcMoveRight);
+    }
 }
 
 
@@ -258,14 +349,14 @@ void Game::funcSpecialBulletBonusSpawn()
 
 void Game::funcMoveLeft()
 {
-    if (game->playerShip->x() >= 0)
-    game->playerShip->setPos(playerShip->x()-15, playerShip->y());
+    if ((game->playerShip->x() >= 0) && (game->playerShip->getIsRunning()==true))
+    game->playerShip->setPos(playerShip->x()-2, playerShip->y());
 }
 
 void Game::funcMoveRight()
 {
-    if (game->playerShip->x() <= 700)
-    game->playerShip->setPos(playerShip->x()+15, playerShip->y());
+    if ((game->playerShip->x() <= 700) && (game->playerShip->getIsRunning()==true))
+    game->playerShip->setPos(playerShip->x()+2, playerShip->y());
 }
 
 void Game::funcEnemySpawn()

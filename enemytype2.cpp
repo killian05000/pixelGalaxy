@@ -41,7 +41,7 @@ void EnemyType2::enemySpawn()
     enemyMoveTimer->start(speedDifficulty);
 
     QTimer *enemyBulletTimer = new QTimer();
-    enemyBulletTimer->start(1750);
+    enemyBulletTimer->start(1500);
 
     if (game->playerLife->getLife() <= 0)
     {
@@ -109,7 +109,7 @@ void EnemyType2::shotBullet()
         scene()->addItem(enemyBullet);
 
         QTimer *enemyBulletSpeed = new QTimer();
-        enemyBulletSpeed->start(10);
+        enemyBulletSpeed->start(15);
 
         connect(enemyBulletSpeed, &QTimer::timeout, enemyBullet, &Bullet::enemyType2BulletMove);
     }

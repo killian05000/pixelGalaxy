@@ -84,8 +84,14 @@ class Game : public QGraphicsView
 
         Button *moveLeftButton;
         Button *moveRightButton;
+        Button *shotButton;
 
+        QTimer *moveToTheLeftTimer;
         void moveToTheLeft();
+        QTimer *moveToTheRightTimer;
+        void moveToTheRight();
+        void shotABullet();
+        void stopAnyMove();
 };
 
 #endif // GAME_H

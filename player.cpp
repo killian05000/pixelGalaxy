@@ -27,37 +27,38 @@ Player::~Player()
 
 void Player::keyPressEvent(QKeyEvent *event)
 {
+    qDebug() << Q_FUNC_INFO;
     if ((event->key() == Qt::Key_Left) && (pos().x() > 0) && (isRunning==true))
     {
-        setPos(x()-15, y());
+        game->moveToTheLeft();
+        //setPos(x()-15, y());
 
-        if (game->playerScore->getScore()==0)
-            game->playerScore->calculLevelReached();
-
-        if (gameReset==true)
-        {
-            gameReset=false;
-            game->playerScore->calculLevelReached();
-            qDebug() << "On relance le jeu et les timers";
-        }
+//        if (gameReset==true)
+//        {
+//            gameReset=false;
+//            game->playerScore->calculLevelReached();
+//            qDebug() << "On relance le jeu et les timers";
+//        }
     }
     if ((event->key() == Qt::Key_Right) && (pos().x()+100 < 800) && (isRunning==true))
     {
-        setPos(x()+15, y());
+        game->moveToTheRight();
+        //setPos(x()+15, y());
 
-        if (game->playerScore->getScore()==0)
-            game->playerScore->calculLevelReached();
-
-        if (gameReset==true)
-        {
-            gameReset=false;
-            game->playerScore->calculLevelReached();
-            qDebug() << "On relance le jeu et les timers";
-        }
+//        if (gameReset==true)
+//        {
+//            gameReset=false;
+//            game->playerScore->calculLevelReached();
+//            qDebug() << "On relance le jeu et les timers";
+//        }
+    }
+    if ((event->key() == Qt::Key_Down) && (isRunning==true))
+    {
+        game->stopAnyMove();
     }
     if ((event->key() == Qt::Key_Space) && (isRunning==true))
     {
-        shotSomeBullets();
+        game->shotABullet();
     }
     if (event->key() == Qt::Key_P)
     {

@@ -113,7 +113,7 @@ void Score::calculLevelReached()
     if ((getScore() <= 2) && (tutoActivated==false))
     {
         qDebug() << "TUTORIEL TADA";
-        game->enemyType1SpawnTimer->start(2500);
+        game->enemyType1SpawnTimer->start(2000);
         tutoActivated=true;
     }
 
@@ -134,10 +134,10 @@ void Score::calculLevelReached()
     if ((getScore() >= 40 ) && (level2Activated==false))
     {
         qDebug() << "LEVEL 2 REACHED";
-        game->setEnemyType2B1(8000);
-        game->setEnemyType2B2(12000);
+        game->setEnemyType2B1(6000);
+        game->setEnemyType2B2(10000);
         game->funcEnemyType2Spawn();
-        game->enemyType1SpawnTimer->start(2500);
+        game->enemyType1SpawnTimer->start(2200);
         game->specialBulletBonusSpawnTimer->start(random(5000,20000));
         level2Activated=true;
     }
@@ -156,7 +156,7 @@ void Score::calculLevelReached()
         game->setEnemyType2B1(5000);
         game->setEnemyType2B2(8000);
         //game->funcEnemyType2Spawn();
-        game->enemyType1SpawnTimer->start(3000);
+        game->enemyType1SpawnTimer->start(25000);
         level3Activated=true;
     }
 
@@ -183,10 +183,10 @@ void Score::calculLevelReached()
         qDebug() << "LEVEL 5 REACHED";
         game->enemyType3SpawnTimerL->stop();
         game->enemyType3SpawnTimerR->stop();
-        game->setEnemyType2B1(6000);
+        game->setEnemyType2B1(4000);
         game->setEnemyType2B2(12000);
         game->funcEnemyType2Spawn();
-        game->enemyType1SpawnTimer->start(2200);
+        game->enemyType1SpawnTimer->start(2000);
         level5Activated=true;
     }
 }
