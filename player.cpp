@@ -75,6 +75,10 @@ void Player::keyPressEvent(QKeyEvent *event)
     {
         resetGame();
     }
+    if(event->key() == Qt::Key_F)
+    {
+        game->playerLife->setIncreaseLife(10);
+    }
 }
 
 void Player::shotSomeBullets()

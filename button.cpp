@@ -5,10 +5,9 @@ Button::Button()
     :QGraphicsRectItem()
 {
 
-
 }
 
-void Button::mousePressEvent(QGraphicsSceneMouseEvent *evt)
-{
-    emit clicked();
-}
+//void Button::mousePressEvent(QGraphicsSceneMouseEvent *evt)
+//{
+//    emit clicked();
+//}

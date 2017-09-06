@@ -12,7 +12,7 @@ public:
     Button();
 
 protected:
-    void mousePressEvent(QGraphicsSceneMouseEvent *evt);
+    //void mousePressEvent(QGraphicsSceneMouseEvent *evt);
     //QMouseEvent *bidule;
 
 signals:

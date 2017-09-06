@@ -31,7 +31,7 @@ void BossType1::bossType1Spawn()
     BossType1MoveTimer->start(50);
 
     QTimer *shotFirstBulletTimer = new QTimer();
-    shotFirstBulletTimer->start(800);
+    shotFirstBulletTimer->start(1200);
 
     QTimer *shotSecondBulletTimer = new QTimer();
     shotSecondBulletTimer->start(1000);
@@ -94,27 +94,27 @@ void BossType1::move()
         if (pos().x() <= 100)
         {
             qDebug() <<" trop à gauche 100 crossed";
-            moveL=2;
-            moveR=5;
+            moveL=1;
+            moveR=3;
         }
         else if (pos().x() >= 300)
         {
             qDebug() << "trop à droite 500 crossed";
-            moveL=5;
-            moveR=2;
+            moveL=3;
+            moveR=1;
         }
         else
         {
-            moveL=5;
-            moveR=5;
+            moveL=3;
+            moveR=3;
         }
 
-        if ((random_number <= 180) && (pos().x() >= 5))
+        if ((random_number <= 150) && (pos().x() >= 5))
             setPos(x()-moveL,y());
-        else if ((random_number <= 360) && (pos().x() <= 795))
+        else if ((random_number <= 300) && (pos().x() <= 795))
             setPos(x()+moveR,y());
-        else if (random_number > 360)
-            setPos(x(),y()+3);
+        else if (random_number > 300)
+            setPos(x(),y()+2);
 
 
 //        if (pos().y() <=0)

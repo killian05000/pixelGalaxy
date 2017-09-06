@@ -108,7 +108,7 @@ void Score::paintNothing()
     setPlainText(QString(""));
 }
 
-void Score::calculLevelReached()
+void Score::calculLevelReached()  //gestion des niveaux et de la difficulté de jeu
 {
     if ((getScore() <= 2) && (tutoActivated==false))
     {
@@ -160,7 +160,7 @@ void Score::calculLevelReached()
         level3Activated=true;
     }
 
-    if ((getScore() == 100) && (bossType1Activated==false))
+    if ((getScore() == 5) && (bossType1Activated==false))
     {
         qDebug() << "BOSS INCOMING !!!!!!!!!!!!!!!!";
         game->funcBossType1Spawn();

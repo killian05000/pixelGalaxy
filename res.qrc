@@ -19,5 +19,6 @@
         <file>Images/purpleLazerBullet.png</file>
         <file>Images/sbBonus.png</file>
         <file>Images/bossLifeBonus.png</file>
+        <file>Images/background3.png</file>
     </qresource>
 </RCC>

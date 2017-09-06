@@ -13,6 +13,9 @@
 #include <QBrush>
 #include <QImage>
 #include <QTimer>
+#include <QDesktopWidget>
+#include <QSize>
+#include <QPixmap>
 
 random_device Game::generator{};
 
@@ -21,6 +24,9 @@ extern Game *game;
 Game::Game(QWidget *parent)
     : QGraphicsView(parent)
 {
+    int screenWidth = QApplication::desktop()->width();
+    int screenHeight = QApplication::desktop()->height();
+
     playerShip = new Player();
     //playerShip->setRect(0,0, 100, 100);
     playerShip->setFlag(QGraphicsItem::ItemIsFocusable);
@@ -36,20 +42,27 @@ Game::Game(QWidget *parent)
 
     moveLeftButton = new Button();
     moveLeftButton->setRect(0,450,400,150);
-    moveLeftButton->setPen(QPen(Qt::red,2));
+    //moveLeftButton->setPen(QPen(Qt::red,2));
+    moveLeftButton->hide();
     moveRightButton = new Button();
     moveRightButton->setRect(400,450,400,150);
-    moveRightButton->setPen(QPen(Qt::blue,2));
+    //moveRightButton->setPen(QPen(Qt::blue,2));
+    moveRightButton->hide();
     shotButton = new Button();
     shotButton->setRect(0,0,800,450);
-    shotButton->setPen(QPen(Qt::green,2));
+    //shotButton->setPen(QPen(Qt::green,2));
+    shotButton->hide();
 
     enemy1 = new EnemyType1();
     enemy2 = new EnemyType2();
     Boss1 = new BossType1();
 
+//    QPixmap backgb(":/pictures/Images/background1.jpg");
+//    QPixmap backg=backgb.scaled(QSize(screenWidth,screenHeight),Qt::IgnoreAspectRatio);
     scene = new QGraphicsScene(this);
+    //scene->setSceneRect(0,0,screenWidth,screenHeight-70);
     scene->setSceneRect(0,0,800,600);
+    //scene->setBackgroundBrush(QBrush(backg));
     scene->setBackgroundBrush(QBrush(QImage(":/pictures/Images/background1.jpg")));
     scene->addItem(playerShip);
     scene->addItem(playerScore);
@@ -64,6 +77,8 @@ Game::Game(QWidget *parent)
     view->setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
 
     view->setFixedSize(800,600);
+    //view->setFixedSize(screenWidth,screenHeight-70);
+    //view->setBackgroundBrush(QBrush(QImage(":/pictures/Images/background3.png")));
 
     playerShip->setPos(((view->width()-playerShip->pixmap().width())/2), (view->height() - playerShip->pixmap().height()));
 
@@ -356,7 +371,7 @@ void Game::funcMoveLeft()
 void Game::funcMoveRight()
 {
     if ((game->playerShip->x() <= 700) && (game->playerShip->getIsRunning()==true))
-    game->playerShip->setPos(playerShip->x()+2, playerShip->y());
+    game->playerShip->setPos(playerShip->x()+2.5, playerShip->y());
 }
 
 void Game::funcEnemySpawn()

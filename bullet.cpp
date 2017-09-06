@@ -327,7 +327,7 @@ void Bullet::bossSecondBulletMove()
     }
 
     if (game->playerShip->getIsRunning() == true)
-        setPos(x()-1, y()+3);
+        setPos(x()-1.5, y()+3);
     if (pos().y() - pixmap().height() > 600)
     {
         scene()->removeItem(this);
@@ -362,7 +362,7 @@ void Bullet::bossThirdBulletMove()
     }
 
     if (game->playerShip->getIsRunning() == true)
-        setPos(x()+1, y()+3);
+        setPos(x()+1.5, y()+3);
     if (pos().y() - pixmap().height() > 600)
     {
         scene()->removeItem(this);

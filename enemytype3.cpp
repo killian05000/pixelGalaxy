@@ -115,7 +115,7 @@ void EnemyType3::move()
         return;
     }
 
-     if ((pos().y() - pixmap().height() >= 600) || (pos().x()-pixmap().height() > 600) || (pos().x()+pixmap().height() < 0))
+     if ((pos().y() - pixmap().height() >= 600) || (pos().x()-pixmap().height() > 700) || (pos().x()+pixmap().height() < 0))
     {
         scene()->removeItem(this);
         delete this;
