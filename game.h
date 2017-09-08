@@ -71,6 +71,7 @@ class Game : public QGraphicsView
 
         Score *playerScore;
         Score *playerLife;
+        Score *playerRules;
         Score *playerGameOver;
 
         Bonus *bonus;

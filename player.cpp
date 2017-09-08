@@ -27,7 +27,6 @@ Player::~Player()
 
 void Player::keyPressEvent(QKeyEvent *event)
 {
-    qDebug() << Q_FUNC_INFO;
     if ((event->key() == Qt::Key_Left) && (pos().x() > 0) && (isRunning==true))
     {
         game->moveToTheLeft();
@@ -65,7 +64,10 @@ void Player::keyPressEvent(QKeyEvent *event)
         if (getIsRunning() == true)
             setIsRunning(false);
         else if (getIsRunning() == false)
+        {
+            game->playerRules->paintNothing();
             setIsRunning(true);
+        }
     }
     if (event->key() == Qt::Key_Escape)
     {
@@ -74,6 +76,27 @@ void Player::keyPressEvent(QKeyEvent *event)
     if(event->key() == Qt::Key_R)
     {
         resetGame();
+    }
+    if(event->key() == Qt::Key_H)
+    {
+        if (game->playerRules->rulesDisplayed==false)
+        {
+            if (getIsRunning() == true)
+                setIsRunning(false);
+
+            game->playerRules->paintRules();
+            //game->playerRules->rulesDisplayed=true;
+            qDebug() << "On affiche les règles";
+        }
+        else if (game->playerRules->rulesDisplayed==true)
+        {
+            if (getIsRunning() == false)
+                setIsRunning(true);
+
+            game->playerRules->paintNothing();
+            game->playerRules->rulesDisplayed=false;
+            qDebug() << "On efface les règles";
+        }
     }
     if(event->key() == Qt::Key_F)
     {

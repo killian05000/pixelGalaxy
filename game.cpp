@@ -37,6 +37,8 @@ Game::Game(QWidget *parent)
     playerLife = new Score();
     playerLife->setPos(playerScore->x(), playerScore->y()+25);
     playerLife->repaintLife();
+    playerRules = new Score();
+    playerRules->setPos(playerScore->x()+100, playerScore->y()+150);
     playerGameOver = new Score();
     playerGameOver->setPos(playerScore->x()+150, playerScore->y()+250);
 
@@ -67,6 +69,7 @@ Game::Game(QWidget *parent)
     scene->addItem(playerShip);
     scene->addItem(playerScore);
     scene->addItem(playerLife);
+    scene->addItem(playerRules);
     scene->addItem(moveLeftButton);
     scene->addItem(moveRightButton);
     scene->addItem(shotButton);

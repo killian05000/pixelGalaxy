@@ -35,10 +35,12 @@ class Score : public QGraphicsTextItem
         void repaintLife(); // paint ou repaint la vie
         int getLife();
 
+        void paintRules(); // paint les règles
         void paintGameOver();
         void paintNothing();
 
         void calculLevelReached();
+        bool rulesDisplayed=false;
         bool tutoActivated = false;
         bool level1Activated = false;
         bool bonusSpawn = false;

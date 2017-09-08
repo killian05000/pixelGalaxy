@@ -94,9 +94,23 @@ int Score::getLife()
     return life;
 }
 
+void Score::paintRules()
+{
+    setPlainText(QString("Ce que vous savez ! \n"
+                         "-Tirez aec la touche espace\n"
+                         "-Utilisez les fleches droite/gauche\n"
+                         " pour vous deplacer\n"
+                         "-La fleche du bas immobilise le vaisseau\n"
+                         "-Vous perdez 1 pdv en cas de colision\n"
+                         "-Vous perdez 1 pdv si on vaisseau enemi \n depasse le bas de l'écran"));
+    setDefaultTextColor(Qt::yellow);
+    setFont(QFont("Karmatic arcade",15));
+    rulesDisplayed=true;
+}
+
 void Score::paintGameOver()
 {
-
+    game->playerRules->paintNothing();
     setPlainText(QString("Game Over"));
     setDefaultTextColor(Qt::green);
     setFont(QFont("Karmatic arcade",50));
@@ -160,7 +174,7 @@ void Score::calculLevelReached()  //gestion des niveaux et de la difficulté de 
         level3Activated=true;
     }
 
-    if ((getScore() == 5) && (bossType1Activated==false))
+    if ((getScore() == 100) && (bossType1Activated==false))
     {
         qDebug() << "BOSS INCOMING !!!!!!!!!!!!!!!!";
         game->funcBossType1Spawn();
