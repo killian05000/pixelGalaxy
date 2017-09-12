@@ -38,7 +38,7 @@ Game::Game(QWidget *parent)
     playerLife->setPos(playerScore->x(), playerScore->y()+25);
     playerLife->repaintLife();
     playerRules = new Score();
-    playerRules->setPos(playerScore->x()+100, playerScore->y()+150);
+    playerRules->setPos(playerScore->x()+120, playerScore->y()+150);
     playerGameOver = new Score();
     playerGameOver->setPos(playerScore->x()+150, playerScore->y()+250);
 

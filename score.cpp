@@ -96,9 +96,9 @@ int Score::getLife()
 
 void Score::paintRules()
 {
-    setPlainText(QString("Ce que vous savez ! \n"
+    setPlainText(QString("Ce que vous savez ! \n\n"
                          "-Tirez aec la touche espace\n"
-                         "-Utilisez les fleches droite/gauche\n"
+                         "-Utilisez les fleches droite gauche\n"
                          " pour vous deplacer\n"
                          "-La fleche du bas immobilise le vaisseau\n"
                          "-Vous perdez 1 pdv en cas de colision\n"
@@ -141,7 +141,7 @@ void Score::calculLevelReached()  //gestion des niveaux et de la difficulté de 
     if ((getScore() >= 10) && (bonusSpawn==false))
     {
         game->tripleBulletBonusSpawnTimer->start(random(10000,50000));
-        game->lifeBonusSpawnTimer->start(random(5000,30000));
+        game->lifeBonusSpawnTimer->start(random(10000,40000));
         bonusSpawn=true;
     }
 
@@ -152,7 +152,7 @@ void Score::calculLevelReached()  //gestion des niveaux et de la difficulté de 
         game->setEnemyType2B2(10000);
         game->funcEnemyType2Spawn();
         game->enemyType1SpawnTimer->start(2200);
-        game->specialBulletBonusSpawnTimer->start(random(5000,20000));
+        game->specialBulletBonusSpawnTimer->start(random(15000,60000));
         level2Activated=true;
     }
 
@@ -170,7 +170,7 @@ void Score::calculLevelReached()  //gestion des niveaux et de la difficulté de 
         game->setEnemyType2B1(5000);
         game->setEnemyType2B2(8000);
         //game->funcEnemyType2Spawn();
-        game->enemyType1SpawnTimer->start(25000);
+        game->enemyType1SpawnTimer->start(2500);
         level3Activated=true;
     }
 
@@ -192,7 +192,7 @@ void Score::calculLevelReached()  //gestion des niveaux et de la difficulté de 
         level4Activated=true;
     }
 
-    if((getScore() >= 140) && (level5Activated==false))
+    if((getScore() >= 160) && (level5Activated==false))
     {
         qDebug() << "LEVEL 5 REACHED";
         game->enemyType3SpawnTimerL->stop();
