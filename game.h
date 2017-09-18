@@ -93,6 +93,9 @@ class Game : public QGraphicsView
         void moveToTheRight();
         void shotABullet();
         void stopAnyMove();
+
+        int b1meteoritespawn=1000;
+        int b2meteoritespawn=500;
 };
 
 #endif // GAME_H

@@ -31,13 +31,13 @@ void BossType1::bossType1Spawn()
     BossType1MoveTimer->start(50);
 
     QTimer *shotFirstBulletTimer = new QTimer();
-    shotFirstBulletTimer->start(1200);
+    shotFirstBulletTimer->start(1500);
 
     QTimer *shotSecondBulletTimer = new QTimer();
-    shotSecondBulletTimer->start(1000);
+    shotSecondBulletTimer->start(1200);
 
     QTimer *shotThirdBulletTimer = new QTimer();
-    shotThirdBulletTimer->start(1000);
+    shotThirdBulletTimer->start(1200);
 
     if (game->playerLife->getLife() <= 0)
     {

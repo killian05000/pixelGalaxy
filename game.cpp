@@ -210,16 +210,16 @@ void Game::moveToTheRight()
 
 void Game::shotABullet()
 {
-    if (moveToTheLeftTimer->isActive())
-    {
-        moveToTheLeftTimer->stop();
-        disconnect(moveToTheLeftTimer, &QTimer::timeout, this, &Game::funcMoveLeft);
-    }
-    if (moveToTheRightTimer->isActive())
-    {
-        moveToTheRightTimer->stop();
-        disconnect(moveToTheRightTimer, &QTimer::timeout, this, &Game::funcMoveRight);
-    }
+//    if (moveToTheLeftTimer->isActive())
+//    {
+//        moveToTheLeftTimer->stop();
+//        disconnect(moveToTheLeftTimer, &QTimer::timeout, this, &Game::funcMoveLeft);
+//    }
+//    if (moveToTheRightTimer->isActive())
+//    {
+//        moveToTheRightTimer->stop();
+//        disconnect(moveToTheRightTimer, &QTimer::timeout, this, &Game::funcMoveRight);
+//    }
     game->playerShip->shotSomeBullets();
 }
 
@@ -290,21 +290,21 @@ void Game::funcMeteoriteSpawn()
     {
         Meteorite *meteorite = new Meteorite();
 
-        uniform_int_distribution<int> distribution_skin(1,6);
+        uniform_int_distribution<int> distribution_skin(1,5);
         int random_skin = distribution_skin(generator);
 
         if (random_skin <= 2)
             meteorite->setPixmap(QPixmap(":/pictures/Images/meteorite2.png"));
         else if (random_skin <= 4)
             meteorite->setPixmap(QPixmap(":/pictures/Images/meteorite3.png"));
-        else if (random_skin <=6)
+        else if (random_skin = 5)
             meteorite->setPixmap(QPixmap(":/pictures/Images/meteorite4.png"));
 
         scene->addItem(meteorite);
         meteorite->meteoriteSpawn();
         qDebug() << "A meteorite have been created  ---ARMAGEDON---";
 
-        uniform_int_distribution<int> distribution(15000,25000);
+        uniform_int_distribution<int> distribution(b1meteoritespawn,b2meteoritespawn);
         int random_number = distribution(generator);
 
         meteoriteSpawnTimer->start(random_number);
@@ -368,13 +368,13 @@ void Game::funcSpecialBulletBonusSpawn()
 void Game::funcMoveLeft()
 {
     if ((game->playerShip->x() >= 0) && (game->playerShip->getIsRunning()==true))
-    game->playerShip->setPos(playerShip->x()-2, playerShip->y());
+        game->playerShip->setPos(playerShip->x()-3.3, playerShip->y());
 }
 
 void Game::funcMoveRight()
 {
     if ((game->playerShip->x() <= 700) && (game->playerShip->getIsRunning()==true))
-    game->playerShip->setPos(playerShip->x()+2.5, playerShip->y());
+        game->playerShip->setPos(playerShip->x()+3.3, playerShip->y());
 }
 
 void Game::funcEnemySpawn()

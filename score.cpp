@@ -124,17 +124,17 @@ void Score::paintNothing()
 
 void Score::calculLevelReached()  //gestion des niveaux et de la difficulté de jeu
 {
-    if ((getScore() <= 2) && (tutoActivated==false))
+    if ((getScore() <= 5) && (tutoActivated==false))
     {
         qDebug() << "TUTORIEL TADA";
         game->enemyType1SpawnTimer->start(2000);
         tutoActivated=true;
     }
 
-    if ((getScore() > 2) && (level1Activated==false))
+    if ((getScore() > 5) && (level1Activated==false))
     {
         qDebug() << "LEVEL 1";
-        game->enemyType1SpawnTimer->start(1500);
+        game->enemyType1SpawnTimer->start(1100);
         level1Activated=true;
     }
 
@@ -148,10 +148,10 @@ void Score::calculLevelReached()  //gestion des niveaux et de la difficulté de 
     if ((getScore() >= 40 ) && (level2Activated==false))
     {
         qDebug() << "LEVEL 2 REACHED";
-        game->setEnemyType2B1(6000);
+        game->setEnemyType2B1(2000);
         game->setEnemyType2B2(10000);
         game->funcEnemyType2Spawn();
-        game->enemyType1SpawnTimer->start(2200);
+        game->enemyType1SpawnTimer->start(1500);
         game->specialBulletBonusSpawnTimer->start(random(15000,60000));
         level2Activated=true;
     }
@@ -160,6 +160,8 @@ void Score::calculLevelReached()  //gestion des niveaux et de la difficulté de 
     {
         qDebug() << "METEORITE INCOMING";
         game->specialBulletBonusSpawnTimer->start(random(10000,50000));
+        game->b1meteoritespawn=15000;
+        game->b2meteoritespawn=25000;
         game->funcMeteoriteSpawn();
         meteoriteActivated=true;
     }
@@ -172,6 +174,17 @@ void Score::calculLevelReached()  //gestion des niveaux et de la difficulté de 
         //game->funcEnemyType2Spawn();
         game->enemyType1SpawnTimer->start(2500);
         level3Activated=true;
+    }
+
+    if ((getScore() >= 2 ) && (meteoriteActivated==false))
+    {
+        qDebug() << "METEORITE INCOMING";
+        game->enemyType1SpawnTimer->stop();
+        game->enemyType2SpawnTimer->stop();
+        game->b1meteoritespawn=1000;
+        game->b2meteoritespawn=2000;
+        game->funcMeteoriteSpawn();
+        meteoriteActivated=true;
     }
 
     if ((getScore() == 100) && (bossType1Activated==false))

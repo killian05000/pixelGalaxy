@@ -29,7 +29,7 @@ Bullet::~Bullet()
 void Bullet::shotPlayerBullet()
 {
     bulletMoveTimer = new QTimer();
-    bulletMoveTimer->start(30);
+    bulletMoveTimer->start(20);
     connect(bulletMoveTimer, &QTimer::timeout, this, &Bullet::movePlayerBullet);
 }
 
@@ -108,7 +108,7 @@ void Bullet::movePlayerBullet()
 void Bullet::shotSpecialPlayerBullet()
 {
     QTimer *specialBulletMoveTimer = new QTimer();
-    specialBulletMoveTimer->start(20);
+    specialBulletMoveTimer->start(15);
 
     connect(specialBulletMoveTimer, &QTimer::timeout, this , &Bullet::moveSpecialPlayerBullet);
 }

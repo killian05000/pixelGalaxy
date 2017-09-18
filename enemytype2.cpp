@@ -15,7 +15,7 @@ random_device EnemyType2::generator{};
 EnemyType2::EnemyType2()
     : QObject(), QGraphicsPixmapItem()
 {
-    speedDifficulty=30;
+    speedDifficulty=25;
 }
 
 EnemyType2::~EnemyType2()
