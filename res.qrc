@@ -1,5 +1,9 @@
 <RCC>
-    <qresource prefix="/sounds"/>
+    <qresource prefix="/sounds">
+        <file>Sounds/laserBullet.wav</file>
+        <file>Sounds/explosionEnemy.wav</file>
+        <file>Sounds/backgroundMusic.wav</file>
+    </qresource>
     <qresource prefix="/pictures">
         <file>Images/background1.jpg</file>
         <file>Images/background2.jpg</file>
