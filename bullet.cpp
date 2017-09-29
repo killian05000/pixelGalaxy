@@ -19,7 +19,7 @@ random_device Bullet::generator{};
 
 Bullet::Bullet()
 {
-    exploSound = new QMediaPlayer(this);
+    exploSound = new QMediaPlayer;
     exploSound->setMedia(QUrl("qrc:/sounds/Sounds/explosionEnemy.wav"));
 }
 

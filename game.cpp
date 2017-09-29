@@ -112,10 +112,10 @@ Game::Game(QWidget *parent)
     connect(shotButton, &Button::clicked, this, &Game::shotABullet);
 
 
-//    backgroundMusic= new QMediaPlayer();
-//    backgroundMusic->setMedia(QUrl("qrc:/sounds/Sounds/backgroundMusic.wav"));
-//    backgroundMusic->play();
-//    connect(backgroundMusic, &QMediaPlayer::stateChanged, this, &Game::loopBackgroundMusic);
+    backgroundMusic= new QMediaPlayer();
+    backgroundMusic->setMedia(QUrl("qrc:/sounds/Sounds/backgroundMusic.wav"));
+    backgroundMusic->play();
+    connect(backgroundMusic, &QMediaPlayer::stateChanged, this, &Game::loopBackgroundMusic);
 }
 
 Game::~Game()

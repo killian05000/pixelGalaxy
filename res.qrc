@@ -25,4 +25,7 @@
         <file>Images/bossLifeBonus.png</file>
         <file>Images/background3.png</file>
     </qresource>
+    <qresource prefix="/Police">
+        <file>ka1.ttf</file>
+    </qresource>
 </RCC>
