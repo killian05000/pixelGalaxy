@@ -15,7 +15,7 @@ class Bullet : public QObject, public QGraphicsPixmapItem
     Q_OBJECT
 
     private:
-        //QMediaPlayer *exploSound;
+        QMediaPlayer *exploSound;
 
     public:
         Bullet();

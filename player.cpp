@@ -16,8 +16,8 @@ Player::Player(QGraphicsItem *parent)
 {
     isShooting=false;
     setPixmap(QPixmap(":/pictures/Images/playerShip1.png"));
-//    bulletSound = new QMediaPlayer;
-//    bulletSound->setMedia(QUrl("qrc:/sounds/Sounds/laserBullet.wav"));
+    bulletSound = new QMediaPlayer;
+    bulletSound->setMedia(QUrl("qrc:/sounds/Sounds/laserBullet.wav"));
 }
 
 Player::~Player()
@@ -135,10 +135,10 @@ void Player::shotSomeBullets()
         playerBullet->shotSpecialPlayerBullet();
         scene()->addItem(playerBullet);
 
-//        if (bulletSound->state() == QMediaPlayer::PlayingState)
-//            bulletSound->setPosition(0);
-//        else if (bulletSound->state() == QMediaPlayer::StoppedState)
-//            bulletSound->play();
+        if (bulletSound->state() == QMediaPlayer::PlayingState)
+            bulletSound->setPosition(0);
+        else if (bulletSound->state() == QMediaPlayer::StoppedState)
+            bulletSound->play();
 
         QTimer *endOfSpecialBulletBonusTimer = new QTimer();
         endOfSpecialBulletBonusTimer->setSingleShot(1);
@@ -175,10 +175,10 @@ void Player::shotSomeBullets()
         playerBullet->shotPlayerBullet();
         scene()->addItem(playerBullet);
 
-//        if (bulletSound->state() == QMediaPlayer::PlayingState)
-//            bulletSound->setPosition(0);
-//        else if (bulletSound->state() == QMediaPlayer::StoppedState)
-//            bulletSound->play();
+        if (bulletSound->state() == QMediaPlayer::PlayingState)
+            bulletSound->setPosition(0);
+        else if (bulletSound->state() == QMediaPlayer::StoppedState)
+            bulletSound->play();
     }
 }
 

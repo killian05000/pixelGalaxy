@@ -176,16 +176,16 @@ void Score::calculLevelReached()  //gestion des niveaux et de la difficulté de 
         level3Activated=true;
     }
 
-    if ((getScore() >= 2 ) && (meteoriteActivated==false))
-    {
-        qDebug() << "METEORITE INCOMING";
-        game->enemyType1SpawnTimer->stop();
-        game->enemyType2SpawnTimer->stop();
-        game->b1meteoritespawn=1000;
-        game->b2meteoritespawn=2000;
-        game->funcMeteoriteSpawn();
-        meteoriteActivated=true;
-    }
+//    if ((getScore() >= 2 ) && (meteoriteActivated==false))
+//    {
+//        qDebug() << "METEORITE INCOMING";
+//        game->enemyType1SpawnTimer->stop();
+//        game->enemyType2SpawnTimer->stop();
+//        game->b1meteoritespawn=1000;
+//        game->b2meteoritespawn=2000;
+//        game->funcMeteoriteSpawn();
+//        meteoriteActivated=true;
+//    }
 
     if ((getScore() == 100) && (bossType1Activated==false))
     {

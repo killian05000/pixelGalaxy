@@ -19,8 +19,8 @@ random_device Bullet::generator{};
 
 Bullet::Bullet()
 {
-//    exploSound = new QMediaPlayer;
-//    exploSound->setMedia(QUrl("qrc:/sounds/Sounds/explosionEnemy.wav");
+    exploSound = new QMediaPlayer(this);
+    exploSound->setMedia(QUrl("qrc:/sounds/Sounds/explosionEnemy.wav"));
 }
 
 Bullet::~Bullet()
@@ -40,7 +40,7 @@ void Bullet::movePlayerBullet()
     {
         if (typeid(*(colliding_items[i])) == typeid(EnemyType1))
         {
-            //exploSound->play();
+            exploSound->play();
             scene()->removeItem(colliding_items[i]);
             scene()->removeItem(this);
             delete colliding_items[i];
@@ -51,7 +51,7 @@ void Bullet::movePlayerBullet()
         }
         if (typeid(*(colliding_items[i])) == typeid(EnemyType2))
         {
-            //exploSound->play();
+            exploSound->play();
             scene()->removeItem(colliding_items[i]);
             scene()->removeItem(this);
             delete colliding_items[i];
@@ -62,7 +62,7 @@ void Bullet::movePlayerBullet()
         }
         if (typeid(*(colliding_items[i])) == typeid(EnemyType3))
         {
-            //exploSound->play();
+            exploSound->play();
             //scene()->removeItem(colliding_items[i]);
             scene()->removeItem(this);
             //delete colliding_items[i];
@@ -73,7 +73,7 @@ void Bullet::movePlayerBullet()
         }
         if (typeid(*(colliding_items[i])) == typeid(BossType1))
         {
-            //exploSound->play();
+            exploSound->play();
             game->Boss1->decreaseBossLife();
 
             if (game->Boss1->getBossLife() <=0)
@@ -120,7 +120,7 @@ void Bullet::moveSpecialPlayerBullet()
     {
         if (typeid(*(colliding_items[i])) == typeid(Meteorite))
         {
-            //exploSound->play();
+            exploSound->play();
             scene()->removeItem(colliding_items[i]);
             scene()->removeItem(this);
             delete colliding_items[i];
@@ -130,7 +130,7 @@ void Bullet::moveSpecialPlayerBullet()
         }
         if (typeid(*(colliding_items[i])) == typeid(EnemyType1))
         {
-            //exploSound->play();
+            exploSound->play();
             scene()->removeItem(colliding_items[i]);
             scene()->removeItem(this);
             delete colliding_items[i];
@@ -141,7 +141,7 @@ void Bullet::moveSpecialPlayerBullet()
         }
         if (typeid(*(colliding_items[i])) == typeid(EnemyType2))
         {
-            //exploSound->play();
+            exploSound->play();
             scene()->removeItem(colliding_items[i]);
             scene()->removeItem(this);
             delete colliding_items[i];
@@ -152,7 +152,7 @@ void Bullet::moveSpecialPlayerBullet()
         }
         if (typeid(*(colliding_items[i])) == typeid(EnemyType3))
         {
-            //exploSound->play();
+            exploSound->play();
             scene()->removeItem(colliding_items[i]);
             scene()->removeItem(this);
             delete colliding_items[i];
@@ -163,7 +163,7 @@ void Bullet::moveSpecialPlayerBullet()
         }
         if (typeid(*(colliding_items[i])) == typeid(BossType1))
         {
-            //exploSound->play();
+            exploSound->play();
             game->Boss1->decreaseBossLife();
             game->Boss1->decreaseBossLife();
 

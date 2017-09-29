@@ -18,7 +18,7 @@ class Player : public QObject, public QGraphicsPixmapItem
     private:
         bool isRunning=true;
         bool canShot=true;
-        //QMediaPlayer *bulletSound;
+        QMediaPlayer *bulletSound;
 
     public:
         Player(QGraphicsItem *parent=0);
