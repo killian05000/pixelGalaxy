@@ -11,6 +11,7 @@ random_device EnemyType3::generator{};
 EnemyType3::EnemyType3()
           :QObject(), QGraphicsPixmapItem()
 {
+    setPixmap(QPixmap(":/pictures/Images/enemyShip2.png"));
     speedDifficulty=0;
     rightSide=false;
     dep=0;
@@ -45,8 +46,7 @@ void EnemyType3::enemySpawn(int _dep)
     if (dep==0)
         setPos(0, -pixmap().height());
     else if (dep==1)
-        setPos(800-pixmap().width(), -pixmap().height());
-
+        setPos(game->scene->width()-pixmap().width(), -pixmap().height());
 
     setSpeedDifficulty(10);
 
@@ -115,7 +115,7 @@ void EnemyType3::move()
         return;
     }
 
-     if ((pos().y() - pixmap().height() >= 600) || (pos().x()-pixmap().height() > 700) || (pos().x()+pixmap().height() < 0))
+     if ((pos().y() - pixmap().height() >= 600) || (pos().x()-pixmap().height() > game->scene->width()) || (pos().x()+pixmap().height() < 0))
     {
         scene()->removeItem(this);
         delete this;
@@ -141,6 +141,6 @@ void EnemyType3::shotBullet()
         QTimer *enemyBulletSpeed = new QTimer();
         enemyBulletSpeed->start(10);
 
-        connect(enemyBulletSpeed, &QTimer::timeout, enemyBullet, &Bullet::enemyType3BulletMove);
+        connect(enemyBulletSpeed, &QTimer::timeout, enemyBullet, &Bullet::enemyType2BulletMove);
     }
 }

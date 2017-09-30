@@ -27,7 +27,7 @@ Player::~Player()
 
 void Player::keyPressEvent(QKeyEvent *event)
 {
-    if ((event->key() == Qt::Key_Left) && (pos().x() > 0) && (isRunning==true))
+    if ((event->key() == Qt::Key_Left) && (isRunning==true))
     {
         game->moveToTheLeft();
         //setPos(x()-15, y());
@@ -39,7 +39,7 @@ void Player::keyPressEvent(QKeyEvent *event)
 //            qDebug() << "On relance le jeu et les timers";
 //        }
     }
-    if ((event->key() == Qt::Key_Right) && (pos().x()+100 < 800) && (isRunning==true))
+    if ((event->key() == Qt::Key_Right) && (isRunning==true))
     {
         game->moveToTheRight();
         //setPos(x()+15, y());

@@ -24,23 +24,26 @@ extern Game *game;
 Game::Game(QWidget *parent)
     : QGraphicsView(parent)
 {
-    int screenWidth = QApplication::desktop()->width();
-    int screenHeight = QApplication::desktop()->height();
+    screenWidth = QApplication::desktop()->width();
+    screenHeight = QApplication::desktop()->height();
+
+    qDebug() << screenWidth << " / " << screenHeight;
 
     playerShip = new Player();
-    //playerShip->setRect(0,0, 100, 100);
     playerShip->setFlag(QGraphicsItem::ItemIsFocusable);
     playerShip->setFocus();
 
     playerScore = new Score();
+    playerScore->setPos(screenHeight/40, screenWidth/14);
     playerScore->repaintScore();
     playerLife = new Score();
-    playerLife->setPos(playerScore->x(), playerScore->y()+25);
+    //playerLife->setPos(playerScore->x(), playerScore->y()+25);
+    playerLife->setPos(playerScore->x(),screenWidth/9);
     playerLife->repaintLife();
     playerRules = new Score();
-    playerRules->setPos(playerScore->x()+120, playerScore->y()+150);
+    playerRules->setPos(screenWidth/3, screenHeight/4);
     playerGameOver = new Score();
-    playerGameOver->setPos(playerScore->x()+150, playerScore->y()+250);
+    playerGameOver->setPos(screenWidth/3, screenHeight/4);
 
     moveLeftButton = new Button();
     moveLeftButton->setRect(0,450,400,150);
@@ -59,13 +62,13 @@ Game::Game(QWidget *parent)
     enemy2 = new EnemyType2();
     Boss1 = new BossType1();
 
-//    QPixmap backgb(":/pictures/Images/background1.jpg");
-//    QPixmap backg=backgb.scaled(QSize(screenWidth,screenHeight),Qt::IgnoreAspectRatio);
+    QPixmap backg = QPixmap(":/pictures/Images/background1.jpg");
+    backg=backg.scaled(QSize(screenWidth,screenHeight),Qt::IgnoreAspectRatio);
     scene = new QGraphicsScene(this);
-    //scene->setSceneRect(0,0,screenWidth,screenHeight-70);
-    scene->setSceneRect(0,0,800,600);
-    //scene->setBackgroundBrush(QBrush(backg));
-    scene->setBackgroundBrush(QBrush(QImage(":/pictures/Images/background1.jpg")));
+    scene->setSceneRect(0,0,screenWidth,screenHeight);
+    scene->setBackgroundBrush(QBrush(backg));
+    //scene->setSceneRect(0,0,800,600);
+    //scene->setBackgroundBrush(QBrush(QImage(":/pictures/Images/background1.jpg")));
     scene->addItem(playerShip);
     scene->addItem(playerScore);
     scene->addItem(playerLife);
@@ -79,11 +82,12 @@ Game::Game(QWidget *parent)
     view->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
     view->setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
 
-    view->setFixedSize(800,600);
-    //view->setFixedSize(screenWidth,screenHeight-70);
+    view->showMaximized();
+    //view->setFixedSize(800,600);
     //view->setBackgroundBrush(QBrush(QImage(":/pictures/Images/background3.png")));
 
-    playerShip->setPos(((view->width()-playerShip->pixmap().width())/2), (view->height() - playerShip->pixmap().height()));
+    //playerShip->setPos(((view->width()-playerShip->pixmap().width())/2), (view->height() - playerShip->pixmap().height()));
+    playerShip->setPos((screenWidth+-playerShip->pixmap().width())/2,screenHeight-playerShip->pixmap().height());
 
     lifeBonusSpawnTimer = new QTimer(this);
     tripleBulletBonusSpawnTimer = new QTimer(this);
@@ -243,7 +247,6 @@ void Game::funcEnemyType2Spawn()
     if (((game->playerLife->getLife() >0) && (game->playerShip->getIsRunning() == true)) && (game->playerScore->bossType1Activated==false))
     {
         EnemyType2 *enemyT2= new EnemyType2();
-        enemyT2->setPixmap(QPixmap(":/pictures/Images/enemyShip2.png"));
         scene->addItem(enemyT2);
         enemyT2->enemySpawn();
 
@@ -257,7 +260,6 @@ void Game::funcEnemyType2Spawn()
 void Game::funcEnemyType3SpawnL()
 {
     EnemyType3 *enemyT3= new EnemyType3();
-    enemyT3->setPixmap(QPixmap(":/pictures/Images/enemyShip2.png"));
     scene->addItem(enemyT3);
     enemyT3->enemySpawn(0);
 
@@ -267,7 +269,6 @@ void Game::funcEnemyType3SpawnL()
 void Game::funcEnemyType3SpawnR()
 {
     EnemyType3 *enemyT3= new EnemyType3();
-    enemyT3->setPixmap(QPixmap(":/pictures/Images/enemyShip2.png"));
     scene->addItem(enemyT3);
     enemyT3->enemySpawn(1);
 
@@ -322,7 +323,7 @@ void Game::funcLifeBonusSpawn()
         scene->addItem(lifeBonus);
         lifeBonus->heartSpawn();
 
-        uniform_int_distribution<int> distribution(15000,18000);
+        uniform_int_distribution<int> distribution(5000,18000);
         int random_number = distribution(generator);
 
         lifeBonusSpawnTimer->start(random_number);
@@ -373,7 +374,7 @@ void Game::funcMoveLeft()
 
 void Game::funcMoveRight()
 {
-    if ((game->playerShip->x() <= 700) && (game->playerShip->getIsRunning()==true))
+    if ((game->playerShip->x() <= screenWidth-game->playerShip->pixmap().width()) && (game->playerShip->getIsRunning()==true))
         game->playerShip->setPos(playerShip->x()+3.3, playerShip->y());
 }
 
@@ -382,15 +383,6 @@ void Game::funcEnemySpawn()
     if (((game->playerLife->getLife() > 0) && (game->playerShip->getIsRunning() == true))  && (game->playerScore->bossType1Activated==false)) //&& (game->playerScore->level2Possible == true))
     {
         EnemyType1 *enemy = new EnemyType1();
-        enemy->setPixmap(QPixmap(":/pictures/Images/enemyShip1.png"));
-
-//        uniform_int_distribution<int> distribution(1,2);
-//        int random_number = distribution(generator);
-
-//        if (random_number == 1)
-//            enemy->setPixmap(QPixmap(":/pictures/Images/enemyShip1.png"));
-//        else if (random_number == 2)
-//            enemy->setPixmap(QPixmap(":/pictures/Images/enemyShip2.png"));
 
         scene->addItem(enemy);
         enemy->enemySpawn();

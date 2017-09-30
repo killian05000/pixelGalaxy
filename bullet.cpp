@@ -220,7 +220,7 @@ void Bullet::enemyType2BulletMove()
 
     if (game->playerShip->getIsRunning() == true)
         setPos(x(), y()+3);
-    if ((pos().y() - pixmap().height() > 600) && (scene() !=0))
+    if ((pos().y() - pixmap().height() > game->scene->height()) && (scene() !=0))
     {
         scene()->removeItem(this);
         delete this;
@@ -232,41 +232,41 @@ void Bullet::enemyType2BulletMove()
         delete this;
 }
 
-void Bullet::enemyType3BulletMove()
-{
-    QList<QGraphicsItem *> colliding_items = collidingItems();
-    for (int i=0, n = colliding_items.size(); i < n; i++)
-    {
-        if (typeid(*(colliding_items[i])) == typeid(Player))
-        {
-            game->playerLife->decreaseLife();
-            if (game->playerLife->getLife() == 0)
-            {
-                game->playerGameOver->paintGameOver();
-                scene()->addItem(game->playerGameOver);
-                game->playerShip->setIsRunning(false);
-            }
-            scene()->removeItem(this);
-            delete this;
-            qDebug() << "EnemyType3's bullet hitted you to" << pos().y();
-            return;
-        }
-    }
+//void Bullet::enemyType3BulletMove()
+//{
+//    QList<QGraphicsItem *> colliding_items = collidingItems();
+//    for (int i=0, n = colliding_items.size(); i < n; i++)
+//    {
+//        if (typeid(*(colliding_items[i])) == typeid(Player))
+//        {
+//            game->playerLife->decreaseLife();
+//            if (game->playerLife->getLife() == 0)
+//            {
+//                game->playerGameOver->paintGameOver();
+//                scene()->addItem(game->playerGameOver);
+//                game->playerShip->setIsRunning(false);
+//            }
+//            scene()->removeItem(this);
+//            delete this;
+//            qDebug() << "EnemyType3's bullet hitted you to" << pos().y();
+//            return;
+//        }
+//    }
 
-    if (game->playerShip->getIsRunning() == true)
-        setPos(x(), y()+3);
-    if ((pos().y() - pixmap().height() > 600) && (scene() !=0))
-    {
-        scene()->removeItem(this);
-        delete this;
-        qDebug() << "EnemyType3's bullet deleted to " << pos().y();
-        return;
-    }
+//    if (game->playerShip->getIsRunning() == true)
+//        setPos(x(), y()+3);
+//    if ((pos().y() - pixmap().height() > 600) && (scene() !=0))
+//    {
+//        scene()->removeItem(this);
+//        delete this;
+//        qDebug() << "EnemyType3's bullet deleted to " << pos().y();
+//        return;
+//    }
 
-    if (game->playerShip->gameReset==true)
-        delete this;
+//    if (game->playerShip->gameReset==true)
+//        delete this;
 
-}
+//}
 
 
 

@@ -31,7 +31,7 @@ class Bullet : public QObject, public QGraphicsPixmapItem
         void moveSpecialPlayerBullet();
 
         void enemyType2BulletMove();
-        void enemyType3BulletMove() ;
+        //void enemyType3BulletMove() ;
 
         void bossFirstBulletMove();
         void bossSecondBulletMove();

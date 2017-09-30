@@ -12,7 +12,7 @@ Score::Score(QGraphicsItem *parent)
      :QGraphicsTextItem(parent)
 {
     score = 0;
-    life = 3;
+    life = 100;
 }
 
 Score::~Score()
@@ -194,14 +194,14 @@ void Score::calculLevelReached()  //gestion des niveaux et de la difficulté de 
         bossType1Activated=true;
     }
 
-    if ((getScore() >= 115 ) && (level4Activated==false))
+    if ((getScore() >= 115) && (level4Activated==false))
     {
         qDebug() << "LEVEL 4 REACHED";
         game->enemyType1SpawnTimer->stop();
         game->enemyType2SpawnTimer->stop();
 
         game->funcEnemyType3SpawnL();
-        game->enemyType3SpawnTimerR->start(8000);
+        game->enemyType3SpawnTimerR->start(1000);
         level4Activated=true;
     }
 

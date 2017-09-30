@@ -15,6 +15,7 @@ random_device EnemyType2::generator{};
 EnemyType2::EnemyType2()
     : QObject(), QGraphicsPixmapItem()
 {
+    setPixmap(QPixmap(":/pictures/Images/enemyShip2.png"));
     speedDifficulty=25;
 }
 
@@ -33,7 +34,7 @@ void EnemyType2::setSpeedDifficulty(int speed_D)
 
 void EnemyType2::enemySpawn()
 {
-    uniform_int_distribution<int> distribution(0,700);
+    uniform_int_distribution<int> distribution(0,game->scene->width()-pixmap().width());
     int random_number = distribution(generator);
     setPos(random_number, -pixmap().height());
 
@@ -86,7 +87,7 @@ void EnemyType2::move()
         return;
     }
 
-     if (pos().y() - pixmap().height() >= 600)
+     if (pos().y() - pixmap().height() >= game->scene->height())
     {
         scene()->removeItem(this);
         delete this;

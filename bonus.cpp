@@ -22,7 +22,7 @@ Bonus::~Bonus()
 
 void Bonus::heartSpawn()
 {
-    uniform_int_distribution<int> distribution(0,750);
+    uniform_int_distribution<int> distribution(0,game->scene->width()-pixmap().width());
     int random_number = distribution(generator);
     setPos(random_number, -50);
 
@@ -60,7 +60,7 @@ void Bonus::moveHeartBonus()
 
 void Bonus::tripleBulletSpawn()
 {
-    uniform_int_distribution<int> distribution(0,750);
+    uniform_int_distribution<int> distribution(0,game->scene->width()-pixmap().width());
     int random_number = distribution(generator);
     setPos(random_number, -50);
 
@@ -98,7 +98,7 @@ void Bonus::moveTripleBulletBonus()
 
 void Bonus::specialBulletSpawn()
 {
-    uniform_int_distribution<int> distribution(0,750);
+    uniform_int_distribution<int> distribution(0,game->scene->width()-pixmap().width());
     int random_number = distribution(generator);
     setPos(random_number, 0);
 
