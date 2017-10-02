@@ -43,12 +43,12 @@ Game::Game(QWidget *parent)
     playerRules = new Score();
     playerRules->setPos(screenWidth/3, screenHeight/4);
     playerGameOver = new Score();
-    playerGameOver->setPos(screenWidth/3, screenHeight/4);
+    playerGameOver->setPos(screenWidth/4, screenHeight/3);
 
-    moveLeftButton = new Button();
-    moveLeftButton->setRect(0,450,400,150);
-    //moveLeftButton->setPen(QPen(Qt::red,2));
-    moveLeftButton->hide();
+//    moveLeftButton = new Button();
+//    moveLeftButton->setRect(scene->width()/4,0,scene->width()/2,scene->height());
+//    moveLeftButton->setPen(QPen(Qt::red,2));
+    //moveLeftButton->hide();
     moveRightButton = new Button();
     moveRightButton->setRect(400,450,400,150);
     //moveRightButton->setPen(QPen(Qt::blue,2));
@@ -73,7 +73,7 @@ Game::Game(QWidget *parent)
     scene->addItem(playerScore);
     scene->addItem(playerLife);
     scene->addItem(playerRules);
-    scene->addItem(moveLeftButton);
+    //scene->addItem(moveLeftButton);
     scene->addItem(moveRightButton);
     scene->addItem(shotButton);
 
@@ -88,6 +88,11 @@ Game::Game(QWidget *parent)
 
     //playerShip->setPos(((view->width()-playerShip->pixmap().width())/2), (view->height() - playerShip->pixmap().height()));
     playerShip->setPos((screenWidth+-playerShip->pixmap().width())/2,screenHeight-playerShip->pixmap().height());
+
+    moveLeftButton = new Button();
+    moveLeftButton->setRect(scene->width()/4,0,scene->width()/2,scene->height());
+    moveLeftButton->setPen(QPen(Qt::red,2));
+    scene->addItem(moveLeftButton);
 
     lifeBonusSpawnTimer = new QTimer(this);
     tripleBulletBonusSpawnTimer = new QTimer(this);
@@ -368,13 +373,13 @@ void Game::funcSpecialBulletBonusSpawn()
 
 void Game::funcMoveLeft()
 {
-    if ((game->playerShip->x() >= 0) && (game->playerShip->getIsRunning()==true))
+    if ((game->playerShip->x() >= game->scene->width()/4) && (game->playerShip->getIsRunning()==true))
         game->playerShip->setPos(playerShip->x()-3.3, playerShip->y());
 }
 
 void Game::funcMoveRight()
 {
-    if ((game->playerShip->x() <= screenWidth-game->playerShip->pixmap().width()) && (game->playerShip->getIsRunning()==true))
+    if ((game->playerShip->x() <= (game->scene->width()-game->scene->width()/4) - game->playerShip->pixmap().width()) && (game->playerShip->getIsRunning()==true))
         game->playerShip->setPos(playerShip->x()+3.3, playerShip->y());
 }
 

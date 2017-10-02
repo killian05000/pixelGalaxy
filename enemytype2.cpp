@@ -34,7 +34,8 @@ void EnemyType2::setSpeedDifficulty(int speed_D)
 
 void EnemyType2::enemySpawn()
 {
-    uniform_int_distribution<int> distribution(0,game->scene->width()-pixmap().width());
+    //uniform_int_distribution<int> distribution(0,game->scene->width()-pixmap().width());
+    uniform_int_distribution<int> distribution(game->scene->width()/4,(game->scene->width()-game->scene->width()/4)-pixmap().width());
     int random_number = distribution(generator);
     setPos(random_number, -pixmap().height());
 

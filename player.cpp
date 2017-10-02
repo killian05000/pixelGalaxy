@@ -198,7 +198,8 @@ void Player::resetGame()
     game->playerScore->setScore(0);
     game->playerLife->setLife(3);
     game->playerGameOver->paintNothing();
-    game->playerShip->setPos(350,500);
+    game->stopAnyMove();
+    game->playerShip->setPos((game->scene->width()-game->playerShip->pixmap().width())/2,game->scene->height()-game->playerShip->pixmap().height());
     gameReset=true;
     game->playerScore->tutoActivated=false;
     game->playerScore->level1Activated=false;

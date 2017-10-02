@@ -44,9 +44,9 @@ void EnemyType3::enemySpawn(int _dep)
 {
     dep=_dep;
     if (dep==0)
-        setPos(0, -pixmap().height());
+        setPos(game->scene->width()/4, -pixmap().height());
     else if (dep==1)
-        setPos(game->scene->width()-pixmap().width(), -pixmap().height());
+        setPos((game->scene->width()-game->scene->width()/4)-pixmap().width(), -pixmap().height());
 
     setSpeedDifficulty(10);
 
