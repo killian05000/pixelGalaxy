@@ -92,7 +92,7 @@ Game::Game(QWidget *parent)
     moveLeftButton = new Button();
     moveLeftButton->setRect(scene->width()/4,0,scene->width()/2,scene->height());
     moveLeftButton->setPen(QPen(Qt::red,2));
-    scene->addItem(moveLeftButton);
+    //scene->addItem(moveLeftButton);
 
     lifeBonusSpawnTimer = new QTimer(this);
     tripleBulletBonusSpawnTimer = new QTimer(this);

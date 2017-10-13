@@ -12,7 +12,7 @@ Score::Score(QGraphicsItem *parent)
      :QGraphicsTextItem(parent)
 {
     score = 0;
-    life = 100;
+    life = 3;
 }
 
 Score::~Score()
@@ -127,7 +127,7 @@ void Score::calculLevelReached()  //gestion des niveaux et de la difficulté de 
     if ((getScore() <= 5) && (tutoActivated==false))
     {
         qDebug() << "TUTORIEL TADA";
-        game->enemyType1SpawnTimer->start(100);
+        game->enemyType1SpawnTimer->start(2000);
         tutoActivated=true;
     }
 
